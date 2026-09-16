@@ -1,0 +1,86 @@
+/* ===========================
+   DARK MODE
+=========================== */
+
+body.dark{
+
+    --background:#0F172A;
+
+    --surface:#1E293B;
+
+    --text:#F8FAFC;
+
+    --text-light:#CBD5E1;
+
+    --border:#334155;
+
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+/* Background */
+
+body.dark,
+body.dark .hero,
+body.dark .about{
+    background:var(--background);
+}
+
+/* Card */
+
+body.dark .about-card{
+    background:var(--surface);
+    border-color:var(--border);
+}
+
+/* Navbar */
+
+body.dark .custom-navbar{
+
+    background:rgba(15,23,42,.85);
+
+    backdrop-filter:blur(12px);
+
+}
+
+/* Logo */
+
+body.dark .logo{
+
+    color:#60A5FA !important;
+
+}
+
+/* Menu */
+
+body.dark .nav-link{
+
+    color:white !important;
+
+}
+
+body.dark .nav-link:hover{
+
+    color:#60A5FA !important;
+
+}
+
+/* Badge */
+
+body.dark .hero-badge{
+
+    background:#1E40AF;
+
+    color:white;
+
+}
+
+/* Skill Tag */
+
+body.dark .skill-tags span{
+
+    background:#1E40AF;
+
+    color:white;
+
+}

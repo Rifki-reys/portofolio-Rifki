@@ -1,0 +1,51 @@
+.custom-navbar{
+
+    position:fixed;
+
+    width:100%;
+
+    top:0;
+
+    z-index:999;
+
+    transition:.35s;
+
+    background:rgba(255,255,255,.85);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid transparent;
+
+}
+
+.custom-navbar.scrolled{
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.logo{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:var(--primary)!important;
+
+}
+
+.nav-link{
+
+    color:var(--text)!important;
+
+    margin-left:22px;
+
+    font-weight:500;
+
+}
+
+.nav-link:hover{
+
+    color:var(--primary)!important;
+
+}
