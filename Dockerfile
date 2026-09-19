@@ -9,7 +9,8 @@ RUN apt-get update \
         libzip-dev \
         unzip \
     && docker-php-ext-install intl mbstring mysqli pdo_mysql zip \
-    && a2enmod rewrite \
+    && (a2dismod mpm_event mpm_worker || true) \
+    && a2enmod mpm_prefork rewrite \
     && sed -ri "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/sites-available/*.conf /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
     && rm -rf /var/lib/apt/lists/*
 
