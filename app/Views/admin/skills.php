@@ -2,29 +2,29 @@
 
 <?= $this->section('content') ?>
 
-<h2 class="mb-4">Kelola Skills</h2>
+<h2 class="mb-4">Manage Skills</h2>
 
 <div class="card p-4 shadow mb-4">
 
 <form action="<?= base_url('admin/skills/add') ?>" method="post">
 
 <div class="mb-3">
-<label>Nama Skill</label>
+<label>Skill Name</label>
 <input type="text" name="skill_name" class="form-control" required>
 </div>
 
 <div class="mb-3">
-<label>Persentase</label>
+<label>Percentage</label>
 <input type="number" name="percentage" class="form-control" required>
 </div>
 
 <div class="mb-3">
-<label>Icon FontAwesome</label>
+<label>FontAwesome Icon</label>
 <input type="text" name="icon" class="form-control" placeholder="fa-brands fa-php">
 </div>
 
 <button class="btn btn-primary">
-Tambah Skill
+Add Skill
 </button>
 
 </form>
@@ -45,7 +45,7 @@ Tambah Skill
 
 <th>Icon</th>
 
-<th>Aksi</th>
+<th>Action</th>
 
 </tr>
 
@@ -70,7 +70,7 @@ Tambah Skill
 <td>
 
 <a href="<?= base_url('admin/skills/delete/'.$skill['id']) ?>" class="btn btn-danger btn-sm">
-Hapus
+Delete
 </a>
 
 </td>

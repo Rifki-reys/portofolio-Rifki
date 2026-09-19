@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <h2 class="mb-4">
-Kelola About
+Manage About
 </h2>
 
 <?php if(session()->getFlashdata('success')): ?>
@@ -51,7 +51,7 @@ class="form-control"><?= esc($about['description']) ?></textarea>
 
 <i class="fa-solid fa-floppy-disk"></i>
 
-Simpan
+Save
 
 </button>
 

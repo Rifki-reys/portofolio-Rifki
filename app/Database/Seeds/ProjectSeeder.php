@@ -12,9 +12,9 @@ class ProjectSeeder extends Seeder
 
         [
 
-            'title'=>'Website Portfolio',
+            'title'=>'Portfolio Website',
 
-            'description'=>'Website portfolio pribadi menggunakan CodeIgniter 4.',
+            'description'=>'Personal portfolio website built with CodeIgniter 4.',
 
             'image'=>'portfolio.jpg',
 
@@ -26,9 +26,9 @@ class ProjectSeeder extends Seeder
 
         [
 
-            'title'=>'Sistem Laundry',
+            'title'=>'Laundry Management System',
 
-            'description'=>'Aplikasi Laundry berbasis Web.',
+            'description'=>'Web-based laundry management application.',
 
             'image'=>'laundry.jpg',
 

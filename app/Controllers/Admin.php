@@ -31,11 +31,11 @@ class Admin extends BaseController
         $user = $userModel->where('email', $email)->first();
 
         if (!$user) {
-            return redirect()->back()->with('error', 'Email tidak ditemukan');
+            return redirect()->back()->with('error', 'Email not found');
         }
 
         if (!password_verify($password, $user['password'])) {
-            return redirect()->back()->with('error', 'Password salah');
+            return redirect()->back()->with('error', 'Incorrect password');
         }
 
         session()->set([
@@ -61,7 +61,7 @@ class Admin extends BaseController
     $model = new AboutModel();
 
     $data = [
-        'title' => 'Kelola About',
+        'title' => 'Manage About',
         'about' => $model->first()
     ];
 
@@ -77,7 +77,7 @@ public function updateAbout()
         'description' => $this->request->getPost('description')
     ]);
 
-    return redirect()->back()->with('success','Data berhasil diperbarui');
+    return redirect()->back()->with('success','Data updated successfully');
 }
 
 public function skills()
@@ -89,7 +89,7 @@ public function skills()
     $model = new \App\Models\SkillModel();
 
     $data = [
-        'title' => 'Kelola Skills',
+        'title' => 'Manage Skills',
         'skills' => $model->findAll()
     ];
 
@@ -140,7 +140,7 @@ public function projects()
     $model = new \App\Models\ProjectModel();
 
     $data = [
-        'title'    => 'Kelola Project',
+        'title'    => 'Manage Projects',
         'projects' => $model->findAll()
     ];
 
@@ -172,7 +172,7 @@ public function addProject()
     ]);
 
     return redirect()->to('/admin/projects')
-                     ->with('success','Project berhasil ditambahkan');
+                     ->with('success','Project added successfully');
 }
 
 public function editProject($id)
@@ -193,10 +193,10 @@ public function deleteProject($id)
 {
     $model = new \App\Models\ProjectModel();
 
-    // Ambil data project
+    // Fetch project data
     $project = $model->find($id);
 
-    // Hapus gambar dari folder
+    // Delete image from folder
     if ($project && !empty($project['image'])) {
 
         $path = FCPATH . 'uploads/projects/' . $project['image'];
@@ -206,11 +206,11 @@ public function deleteProject($id)
         }
     }
 
-    // Hapus data dari database
+    // Delete data from database
     $model->delete($id);
 
     return redirect()->to('/admin/projects')
-                     ->with('success', 'Project berhasil dihapus');
+                     ->with('success', 'Project deleted successfully');
 }
 
 public function contact()
@@ -222,7 +222,7 @@ public function contact()
     $model = new \App\Models\ContactModel();
 
     $data = [
-        'title' => 'Kelola Contact',
+        'title' => 'Manage Contact',
         'contact' => $model->first()
     ];
 

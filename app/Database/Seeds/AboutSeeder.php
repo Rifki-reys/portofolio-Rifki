@@ -9,8 +9,8 @@ class AboutSeeder extends Seeder
     public function run()
     {
          $this->db->table('about')->insert([
-        'title' => 'Mahasiswa Sistem Informasi',
-        'description' => 'Saya adalah mahasiswa Sistem Informasi yang memiliki ketertarikan pada Web Development, Cloud Computing, Database dan UI/UX Design.',
+        'title' => 'Information Systems Student',
+        'description' => 'I am an Information Systems student with a strong interest in Web Development, Cloud Computing, Databases, and UI/UX Design.',
         'photo' => 'foto-profile.png'
     ]);
     }

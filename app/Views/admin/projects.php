@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 
-<h2 class="mb-4">Kelola Project</h2>
+<h2 class="mb-4">Manage Projects</h2>
 
 <div class="card shadow p-4 mb-5">
 
@@ -11,7 +11,7 @@
           enctype="multipart/form-data">
 
         <div class="mb-3">
-            <label class="form-label">Judul Project</label>
+            <label class="form-label">Project Title</label>
             <input type="text"
                    name="title"
                    class="form-control"
@@ -19,7 +19,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Deskripsi</label>
+            <label class="form-label">Description</label>
             <textarea name="description"
                       class="form-control"
                       rows="4"
@@ -41,7 +41,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Gambar</label>
+            <label class="form-label">Image</label>
             <input type="file"
                    name="image"
                    class="form-control">
@@ -49,7 +49,7 @@
 
         <button class="btn btn-primary">
             <i class="fa-solid fa-plus"></i>
-            Simpan Project
+            Save Project
         </button>
 
     </form>
@@ -59,7 +59,7 @@
 <div class="card shadow">
 
     <div class="card-header">
-        <h4 class="mb-0">Daftar Project</h4>
+        <h4 class="mb-0">Project List</h4>
     </div>
 
     <div class="card-body">
@@ -72,15 +72,15 @@
 
                     <th width="50">No</th>
 
-                    <th width="130">Gambar</th>
+                    <th width="130">Image</th>
 
-                    <th>Judul</th>
+                    <th>Title</th>
 
                     <th>Github</th>
 
                     <th>Demo</th>
 
-                    <th width="170">Aksi</th>
+                    <th width="170">Action</th>
 
                 </tr>
 
@@ -127,9 +127,9 @@
 
                     <a href="<?= base_url('admin/projects/delete/'.$project['id']) ?>"
                        class="btn btn-danger btn-sm"
-                       onclick="return confirm('Yakin ingin menghapus project ini?')">
+                       onclick="return confirm('Are you sure you want to delete this project?')">
 
-                        Hapus
+                        Delete
 
                     </a>
 
@@ -145,7 +145,7 @@
 
                 <td colspan="6" class="text-center">
 
-                    Belum ada project.
+                    No projects yet.
 
                 </td>
 

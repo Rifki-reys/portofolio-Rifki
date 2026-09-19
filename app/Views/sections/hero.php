@@ -8,7 +8,8 @@
             <div class="col-lg-6">
 
                 <span class="hero-badge">
-                    👋 Halo, Saya
+                    <i class="fa-regular fa-face-smile" aria-hidden="true"></i>
+                    Hello, I am
                 </span>
 
                 <h1>
@@ -18,32 +19,30 @@
                 <h2 id="typing"></h2>
 
                 <p>
-                    Mahasiswa Sistem Informasi yang memiliki minat pada
-                    Web Development, Cloud Computing, Database,
-                    serta UI/UX Design.
+                    Information Systems student with a passion for
+                    Web Development, Cloud Computing, Databases,
+                    and UI/UX Design.
                 </p>
 
                 <div class="hero-buttons mt-4">
 
-                    <a href="#" class="btn btn-primary">
+                    <a href="<?= base_url('uploads/cv/CV-Rifki-Fauzi.pdf') ?>" class="btn btn-primary" target="_blank" download="CV-Rifki-Fauzi.pdf">
                         Download CV
                     </a>
 
                     <a href="#projects" class="btn btn-outline-primary ms-2">
-                        Lihat Project
+                        View Projects
                     </a>
 
                 </div>
 
                 <div class="social-icons mt-4">
 
-                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/Rifki-reys" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
 
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rfkifauzi_?stkn=MWhjenRmbW8zemZhNw==" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
 
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:rifkifauzi325@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
 
                 </div>
 

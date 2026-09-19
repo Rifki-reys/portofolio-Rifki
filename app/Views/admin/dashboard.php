@@ -20,7 +20,7 @@ Dashboard
 
 <a href="<?= base_url('admin/about') ?>"
 class="btn btn-primary mt-3">
-Kelola
+Manage
 </a>
 
 </div>
@@ -37,7 +37,7 @@ Kelola
 
 <a href="<?= base_url('admin/skills') ?>"
 class="btn btn-primary mt-3">
-Kelola
+Manage
 </a>
 
 </div>
@@ -54,7 +54,7 @@ Kelola
 
 <a href="<?= base_url('admin/projects') ?>"
 class="btn btn-primary mt-3">
-Kelola
+Manage
 </a>
 
 </div>
@@ -71,7 +71,7 @@ Kelola
 
 <a href="<?= base_url('admin/contact') ?>"
 class="btn btn-primary mt-3">
-Kelola
+Manage
 </a>
 
 </div>

@@ -2,10 +2,10 @@
 
 <?= $this->section('content') ?>
 
-<h2 class="mb-4">Kelola Contact</h2>
+<h2 class="mb-4">Manage Contact</h2>
 
 <div class="card p-4 shadow">
-    <p>Halaman Contact berhasil dibuat.</p>
+    <p>Contact management page configured successfully.</p>
 </div>
 
 <?= $this->endSection() ?>

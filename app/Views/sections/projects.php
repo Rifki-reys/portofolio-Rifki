@@ -6,7 +6,7 @@
     <h2 class="section-title">Featured Projects</h2>
 
     <p class="section-subtitle">
-        Beberapa project yang pernah saya kerjakan.
+        A showcase of projects I have built.
     </p>
 </div>
 

@@ -1,25 +1,43 @@
 const toggle = document.getElementById("theme-toggle");
+const moonIcon = '<i class="fa-solid fa-moon" aria-hidden="true"></i>';
+const sunIcon = '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
 
-if(localStorage.getItem("theme") === "dark"){
-    document.body.classList.add("dark");
-    toggle.innerHTML = "☀️";
+function setThemeButton(isDark) {
+    if (!toggle) return;
+
+    toggle.innerHTML = isDark ? sunIcon : moonIcon;
+    toggle.setAttribute("aria-label", isDark ? "Enable light mode" : "Enable dark mode");
+    toggle.setAttribute("title", isDark ? "Enable light mode" : "Enable dark mode");
 }
 
-toggle.addEventListener("click", () => {
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    setThemeButton(true);
+} else {
+    setThemeButton(false);
+}
 
-    document.body.classList.toggle("dark");
+if (toggle) {
+    toggle.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        setThemeButton(isDark);
+    });
+}
 
-    if(document.body.classList.contains("dark")){
-        localStorage.setItem("theme","dark");
-        toggle.innerHTML = "☀️";
-    }else{
-        localStorage.setItem("theme","light");
-        toggle.innerHTML = "🌙";
-    }
+const navbar = document.querySelector(".custom-navbar");
 
-});
+if (navbar) {
+    const updateNavbar = () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 30);
+    };
+
+    updateNavbar();
+    window.addEventListener("scroll", updateNavbar, { passive: true });
+}
+
 const words = [
-    "Mahasiswa Sistem Informasi",
+    "Information Systems Student",
     "Web Developer",
     "Cloud Enthusiast",
     "UI/UX Enthusiast"
@@ -28,53 +46,31 @@ const words = [
 let index = 0;
 let char = 0;
 let deleting = false;
-
 const typing = document.getElementById("typing");
 
-function type(){
-
-    if(!typing) return;
+function type() {
+    if (!typing) return;
 
     const current = words[index];
 
-    if(!deleting){
+    if (!deleting) {
+        typing.textContent = current.substring(0, char++);
 
-        typing.textContent = current.substring(0,char++);
-
-        if(char > current.length){
-
+        if (char > current.length) {
             deleting = true;
-
-            setTimeout(type,1200);
-
+            setTimeout(type, 1200);
             return;
-
         }
+    } else {
+        typing.textContent = current.substring(0, char--);
 
-    }else{
-
-        typing.textContent = current.substring(0,char--);
-
-        if(char < 0){
-
+        if (char < 0) {
             deleting = false;
-
-            index++;
-
-            if(index >= words.length){
-
-                index = 0;
-
-            }
-
+            index = (index + 1) % words.length;
         }
-
     }
 
-    setTimeout(type,deleting ? 50 : 100);
-
+    setTimeout(type, deleting ? 50 : 100);
 }
 
 type();
-
- 
