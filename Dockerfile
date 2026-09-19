@@ -5,6 +5,7 @@ ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         libicu-dev \
+        libonig-dev \
         libzip-dev \
         unzip \
     && docker-php-ext-install intl mbstring mysqli pdo_mysql zip \
