@@ -1,0 +1,43 @@
+# Development Log — Rifki Fauzi Portfolio Next.js Static Migration
+
+## Status
+Phase 5 handoff ready
+
+## Started
+2026-09-19
+
+## Phase 1 — Project Scaffolding
+- Status: PASS
+- Migrated the public portfolio to a Next.js App Router project with strict TypeScript and Tailwind CSS.
+- Added the static export configuration, project structure, static assets, and Remix Icon integration.
+- Verified the development server starts at `http://localhost:3000`.
+
+## Phase 2 — Core Infrastructure
+- Status: PASS
+- Implemented a static homepage with no database, authentication, API, or server runtime dependencies.
+- Configured `output: "export"`, unoptimized static images, and trailing-slash routes for Vercel hosting.
+
+## Phase 3 — Feature Delivery
+- Status: PASS
+- Delivered responsive navigation, hero, about, skills, projects, contact, footer, and theme-toggle components.
+- Added client-side typing animation, dark/light mode persistence, CV download, social links, and repository-aware project cards.
+- Removed the GitHub link from the Penyewaan Lapangan card because it is not represented by a GitHub repository.
+
+## Phase 4 — Testing & Quality
+- Status: PASS
+- `npx tsc --noEmit` completed successfully.
+- `npm run build` completed successfully and generated a static site.
+- `git diff --check` completed without whitespace errors.
+- Local development requests returned HTTP 200.
+- No production secrets are required; `.env` is ignored by Git.
+
+## Phase 5 — Code Review & Handoff
+- Status: PARTIAL
+- Updated the plan to record the implemented Remix Icon library and corrected the Poppins font fallback.
+- Remaining: final browser accessibility review, optional legacy CodeIgniter cleanup, commit, push to `main`, and Vercel deployment.
+
+## Phase Completion Summary — 2026-09-20
+Status: PARTIAL
+Completed: Static Next.js portfolio migration, project metadata correction, validation, and build verification.
+Skipped: Final deployment and legacy application cleanup remain pending.
+Next: Review the final diff, commit the migration, push `main`, and deploy through Vercel.
