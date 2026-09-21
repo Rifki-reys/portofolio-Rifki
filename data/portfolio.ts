@@ -177,6 +177,7 @@ export const projectsData: ProjectItem[] = [
     title: "Penyewaan Lapangan",
     description: "A web-based sports facility rental platform for checking availability, booking fields, and managing reservations.",
     image: "/projects/project-web-flnx.png",
+    githubUrl: "https://github.com/Rifki-reys",
     demoUrl: "#",
   },
   {
@@ -184,7 +185,7 @@ export const projectsData: ProjectItem[] = [
     description: "Cinematic promotional landing page for Ice Caramel Coffee featuring a video background and modern visual design.",
     image: "/projects/1789615298_75989e2c08084741aa94.png",
     githubUrl: "https://github.com/Rifki-reys/kopi-caramel",
-    demoUrl: "https://rifki-reys.github.io/kopi-caramel",
+    demoUrl: "https://nava-karamel.vercel.app/",
   },
   {
     title: "Sistem Absensi Karyawan",
