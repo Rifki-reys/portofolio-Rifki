@@ -36,8 +36,20 @@ Phase 5 handoff ready
 - Updated the plan to record the implemented Remix Icon library and corrected the Poppins font fallback.
 - Remaining: final browser accessibility review, optional legacy CodeIgniter cleanup, commit, push to `main`, and Vercel deployment.
 
+## Visual Polish — 2026-09-24
+- Status: IN PROGRESS
+- Added native scroll-reveal motion, hero ambient gradients, floating visual treatment, section accents, card lift, icon micro-interactions, stronger link states, and a scroll cue.
+- Added reduced-motion handling so content remains visible and motion is disabled when requested.
+- Remaining: lint, typecheck, static build, responsive/accessibility smoke test, commit, and push.
+
 ## Phase Completion Summary — 2026-09-20
 Status: PARTIAL
 Completed: Static Next.js portfolio migration, project metadata correction, validation, and build verification.
 Skipped: Final deployment and legacy application cleanup remain pending.
 Next: Review the final diff, commit the migration, push `main`, and deploy through Vercel.
+
+## Visual Polish Summary — 2026-09-24
+Status: IN PROGRESS
+Completed: Added restrained motion, visual depth, card interactions, navigation affordances, and reduced-motion support without adding a runtime animation dependency.
+Skipped: Browser smoke testing and final commit are pending validation.
+Next: Run quality gates and inspect the responsive result before committing.
