@@ -16,29 +16,37 @@ import Reveal from "./Reveal";
 
 export default function Hero() {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
+  const [displayText, setDisplayText] = useState(profileData.roles[0] ?? "");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentRole = profileData.roles[currentRoleIndex];
-    const typingSpeed = isDeleting ? 40 : 80;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(currentRole.substring(0, displayText.length + 1));
-        if (displayText.length + 1 === currentRole.length) {
-          setTimeout(() => setIsDeleting(true), 1500);
-        }
-      } else {
-        setDisplayText(currentRole.substring(0, displayText.length - 1));
+    const currentRole = profileData.roles[currentRoleIndex] ?? "";
+
+    if (!isDeleting && displayText === currentRole) {
+      const pauseTimer = window.setTimeout(() => setIsDeleting(true), 1500);
+      return () => window.clearTimeout(pauseTimer);
+    }
+
+    const typingTimer = window.setTimeout(() => {
+      if (isDeleting) {
         if (displayText.length === 0) {
           setIsDeleting(false);
           setCurrentRoleIndex((prev) => (prev + 1) % profileData.roles.length);
+          return;
         }
-      }
-    }, typingSpeed);
 
-    return () => clearTimeout(timer);
+        setDisplayText(displayText.slice(0, -1));
+        return;
+      }
+
+      setDisplayText(currentRole.slice(0, displayText.length + 1));
+    }, isDeleting ? 40 : 80);
+
+    return () => window.clearTimeout(typingTimer);
   }, [displayText, isDeleting, currentRoleIndex]);
 
   return (

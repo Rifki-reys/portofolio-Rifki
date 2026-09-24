@@ -37,10 +37,17 @@ Phase 5 handoff ready
 - Remaining: final browser accessibility review, optional legacy CodeIgniter cleanup, commit, push to `main`, and Vercel deployment.
 
 ## Visual Polish — 2026-09-24
-- Status: IN PROGRESS
+- Status: PASS
 - Added native scroll-reveal motion, hero ambient gradients, floating visual treatment, section accents, card lift, icon micro-interactions, stronger link states, and a scroll cue.
 - Added reduced-motion handling so content remains visible and motion is disabled when requested.
-- Remaining: lint, typecheck, static build, responsive/accessibility smoke test, commit, and push.
+- Verified lint, TypeScript, static build, and whitespace checks.
+
+## Dark Theme & Typewriter Fix — 2026-09-24
+- Status: PASS
+- Made the dark gradient theme the default while preserving an explicit light-mode preference through the theme toggle.
+- Fixed the hero typewriter so the first role is visible immediately and its pause/delete cycle cleans up timers correctly.
+- Verified homepage HTTP 200, lint, TypeScript, static build, and whitespace checks.
+- Browser visual inspection remains manual because the local browser session was not controlled from the CLI.
 
 ## Phase Completion Summary — 2026-09-20
 Status: PARTIAL
