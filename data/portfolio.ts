@@ -1,6 +1,5 @@
 export interface ProfileData {
   name: string;
-  badge: string;
   roles: string[];
   bio: string;
   cvUrl: string;
@@ -14,13 +13,12 @@ export interface ProfileData {
 }
 
 export interface AboutData {
-  title: string;
-  subtitle: string;
   profile: {
     name: string;
     status: string;
     major: string;
     location: string;
+    tagline: string;
   };
   education: Array<{
     institution: string;
@@ -42,34 +40,43 @@ export interface SkillItem {
   iconName: string;
 }
 
+export interface ServiceItem {
+  id: string;
+  title: string;
+  summary: string;
+  deliverables: string[];
+}
+
 export interface ProjectItem {
   title: string;
+  category: string;
+  year: string;
   description: string;
   image: string;
+  stack: string[];
   githubUrl?: string;
   demoUrl?: string;
 }
 
 export interface ContactData {
-  title: string;
-  subtitle: string;
   email: string;
   githubUsername: string;
   githubUrl: string;
   instagramHandle: string;
   instagramUrl: string;
+  responseTime: string;
+  availability: string;
 }
 
 export const profileData: ProfileData = {
   name: "Rifki Fauzi",
-  badge: "Hello, I am",
   roles: [
     "Web Developer",
     "Information Systems Student",
     "Cloud Computing Enthusiast",
-    "UI / UX Designer"
+    "UI / UX Designer",
   ],
-  bio: "Information Systems student with a passion for Web Development, Cloud Computing, Databases, and UI/UX Design.",
+  bio: "I design and build complete web products — from database schema and backend logic through to the interface people actually touch.",
   cvUrl: "/cv/CV-Rifki-Fauzi.pdf",
   cvFilename: "CV-Rifki-Fauzi.pdf",
   avatarUrl: "/profile.png",
@@ -81,23 +88,23 @@ export const profileData: ProfileData = {
 };
 
 export const aboutData: AboutData = {
-  title: "About Me",
-  subtitle: "Getting to know me better",
   profile: {
     name: "Rifki Fauzi",
-    status: "Student",
+    status: "Open to internships & freelance work",
     major: "Information Systems",
     location: "Bogor, Indonesia",
+    tagline:
+      "I work end to end — requirement analysis, database design, backend services, and the interface that wraps around them.",
   },
   education: [
     {
       institution: "Kesatuan Institute of Business and Informatics (IBIK)",
-      period: "2024 - Present",
+      period: "2024 — Present",
       major: "Information Systems",
     },
     {
       institution: "SMK Pembangunan",
-      period: "2020 - 2023",
+      period: "2020 — 2023",
       major: "Multimedia",
     },
   ],
@@ -110,12 +117,12 @@ export const aboutData: AboutData = {
   workExperience: [
     {
       company: "ASTON HOTEL",
-      period: "2025 - 2026",
+      period: "2025 — 2026",
       role: "Banquet Service",
     },
     {
       company: "PT IDOLA CAHAYA SEMESTA",
-      period: "2023 - 2024",
+      period: "2023 — 2024",
       role: "Sales Associate",
     },
   ],
@@ -123,92 +130,177 @@ export const aboutData: AboutData = {
 
 export const skillsData: SkillItem[] = [
   {
-    name: "HTML",
-    role: "Frontend",
-    description: "Semantic structure and accessible markup for modern web apps.",
-    iconName: "Code",
-  },
-  {
-    name: "CSS",
-    role: "Frontend",
-    description: "Responsive layouts, visual styling, animations, and modern UI design.",
-    iconName: "Stack",
-  },
-  {
     name: "JavaScript",
-    role: "Frontend & Backend",
-    description: "Dynamic client-side interactivity, DOM logic, and async API integration.",
+    role: "Language",
+    description:
+      "Client-side logic, DOM behaviour and async API integration.",
     iconName: "Code",
   },
   {
     name: "PHP",
-    role: "Backend",
-    description: "Server-side application logic, request handling, and backend APIs.",
+    role: "Language",
+    description:
+      "Server-side application logic, request handling and backend APIs.",
     iconName: "Server",
   },
   {
     name: "CodeIgniter 4",
-    role: "Backend Framework",
-    description: "Lightweight MVC architecture for fast and secure web application development.",
+    role: "Framework",
+    description:
+      "MVC architecture for fast, secure web application development.",
     iconName: "Fire",
   },
   {
     name: "MySQL",
     role: "Database",
-    description: "Relational database management, data modeling, and optimized SQL queries.",
+    description:
+      "Relational modelling, normalisation and optimised queries.",
     iconName: "Database",
   },
   {
+    name: "HTML & CSS",
+    role: "Frontend",
+    description:
+      "Semantic, accessible markup and responsive visual design.",
+    iconName: "Stack",
+  },
+  {
     name: "Docker",
-    role: "DevOps & Tooling",
-    description: "Packages applications into containers for consistent cross-environment deployment.",
+    role: "DevOps",
+    description:
+      "Containers that make environments reproducible across the team.",
     iconName: "Stack",
   },
   {
     name: "AWS",
-    role: "Cloud Infrastructure",
-    description: "Scalable cloud computing services, server management, and web application hosting.",
+    role: "Cloud",
+    description:
+      "Scalable hosting, server management and infrastructure setup.",
     iconName: "Cloud",
+  },
+  {
+    name: "UI / UX",
+    role: "Design",
+    description:
+      "Wireframes, prototypes and interfaces built for real users.",
+    iconName: "Compass",
+  },
+];
+
+export const servicesData: ServiceItem[] = [
+  {
+    id: "01",
+    title: "Web Application Development",
+    summary:
+      "Complete web products built on a maintainable CodeIgniter 4 or PHP codebase — structured, documented, and ready to hand over.",
+    deliverables: [
+      "MVC application architecture",
+      "Authentication & role management",
+      "RESTful endpoints",
+      "Code documentation",
+    ],
+  },
+  {
+    id: "02",
+    title: "Database & Systems Design",
+    summary:
+      "Entity-relationship modelling turned into normalised schemas that stay fast as the data grows.",
+    deliverables: [
+      "ERD & schema design",
+      "Query optimisation",
+      "Migration strategy",
+      "Reporting views",
+    ],
+  },
+  {
+    id: "03",
+    title: "Interface & Experience Design",
+    summary:
+      "Wireframes and high-fidelity prototypes in Figma, validated against real user flows before a line of code is written.",
+    deliverables: [
+      "Wireframe & user flow",
+      "Design system",
+      "Responsive prototypes",
+      "Accessibility pass",
+    ],
+  },
+  {
+    id: "04",
+    title: "Deployment & Infrastructure",
+    summary:
+      "Containerised builds on AWS so releases are repeatable, observable, and boring to operate.",
+    deliverables: [
+      "Docker & Compose setup",
+      "CI/CD pipeline",
+      "AWS provisioning",
+      "Monitoring & backups",
+    ],
   },
 ];
 
 export const projectsData: ProjectItem[] = [
   {
     title: "Penyewaan Lapangan",
-    description: "A web-based sports facility rental platform for checking availability, booking fields, and managing reservations.",
+    category: "Web Application",
+    year: "2025",
+    description:
+      "A sports facility rental platform covering availability checks, booking flows and reservation management for multiple venues.",
     image: "/projects/project-web-flnx.png",
+    stack: ["CodeIgniter 4", "MySQL", "JavaScript"],
     githubUrl: "https://github.com/Rifki-reys",
-    demoUrl: "#",
+  },
+  {
+    title: "Sistem Absensi Karyawan",
+    category: "Internal Tool",
+    year: "2025",
+    description:
+      "An employee attendance system with an HRD dashboard, leave and permission workflows, configurable work hours and reporting.",
+    image: "/projects/1789615809_2d3c10450156a6cb08db.png",
+    stack: ["PHP", "MySQL", "Docker"],
+    githubUrl: "https://github.com/Rifki-reys/Sistem-Absensi-",
   },
   {
     title: "Kopi Caramel",
-    description: "Cinematic promotional landing page for Ice Caramel Coffee featuring a video background and modern visual design.",
+    category: "Landing Page",
+    year: "2024",
+    description:
+      "A cinematic promotional site for Ice Caramel Coffee, built around a full-bleed video background and a motion-led identity.",
     image: "/projects/1789615298_75989e2c08084741aa94.png",
+    stack: ["HTML", "CSS", "JavaScript"],
     githubUrl: "https://github.com/Rifki-reys/kopi-caramel",
     demoUrl: "https://nava-karamel.vercel.app/",
   },
   {
-    title: "Sistem Absensi Karyawan",
-    description: "Web-based employee attendance management system with HRD dashboard, leave and permission management, work hour settings, and reporting.",
-    image: "/projects/1789615809_2d3c10450156a6cb08db.png",
-    githubUrl: "https://github.com/Rifki-reys/Sistem-Absensi-",
-    demoUrl: "#",
-  },
-  {
     title: "IG Unfollower Checker",
-    description: "A simple front-end tool to identify Instagram accounts that don't follow you back. Tagline: spot someone who acts like a celebrity.",
+    category: "Utility",
+    year: "2024",
+    description:
+      "A focused front-end tool that surfaces the accounts you follow who never followed back — shipped as a static GitHub Page.",
     image: "/projects/1789543759_e78cf978a130899fb6b1.png",
+    stack: ["JavaScript", "CSS"],
     githubUrl: "https://github.com/Rifki-reys/ig-unfollower-checker",
     demoUrl: "https://rifki-reys.github.io/ig-unfollower-checker",
   },
 ];
 
 export const contactData: ContactData = {
-  title: "Let's Connect",
-  subtitle: "Have a project or opportunity in mind? Feel free to reach out.",
   email: "rifkifauzi325@gmail.com",
   githubUsername: "github.com/Rifki-reys",
   githubUrl: "https://github.com/Rifki-reys",
   instagramHandle: "@rfkifauzi_",
   instagramUrl: "https://www.instagram.com/rfkifauzi_",
+  responseTime: "Usually replies within 24 hours",
+  availability: "Available for freelance & internship work",
 };
+
+/** Rotating strip under the hero. */
+export const marqueeItems = [
+  "Web Application Development",
+  "Database Design",
+  "UI / UX Design",
+  "Cloud Infrastructure",
+  "CodeIgniter 4",
+  "MySQL",
+  "Docker",
+  "AWS",
+];

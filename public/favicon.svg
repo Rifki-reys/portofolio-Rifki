@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    Brand mark: the editorial system of the site in one tile.
+    Ink canvas + hairline + a geometric "RF" monogram in paper,
+    with the vermilion accent carrying the second letter.
+    Glyphs are drawn as paths (no text) so every renderer agrees.
+  -->
+  <rect width="64" height="64" rx="14" fill="#14110e" />
+  <rect
+    x="0.75"
+    y="0.75"
+    width="62.5"
+    height="62.5"
+    rx="13.25"
+    fill="none"
+    stroke="#33302c"
+    stroke-width="1.5"
+  />
+  <g fill="none" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter">
+    <!-- R -->
+    <path d="M14 49V15h7a9 9 0 0 1 0 18h-7m7 0L31 49" stroke="#f2efe9" />
+    <!-- F -->
+    <path d="M38 49V15h12M38 33h10" stroke="#ff5c2e" />
+  </g>
+</svg>

@@ -1,51 +1,47 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { RiSunLine, RiMoonLine } from "@remixicon/react";
 
-export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
-  const [isReady, setIsReady] = useState(false);
+/**
+ * Theme is owned entirely by the document: the blocking script in
+ * components/ThemeScript.tsx sets the `dark` class on <html> before paint, and
+ * this component only flips that class.
+ *
+ * The icon is not driven by React state on purpose. Hydration runs before the
+ * client can read localStorage, so any `useState` read of the stored theme
+ * would first render the default, then flash the wrong icon — and its mount
+ * effect would overwrite the very preference it was trying to read. Instead
+ * both icons render and CSS selects one, so markup and stored theme can never
+ * disagree.
+ */
 
-  useEffect(() => {
-    const stored = window.localStorage.getItem("theme");
-    const shouldUseDark = stored !== "light";
-
-    document.documentElement.classList.toggle("dark", shouldUseDark);
-    setIsDark(shouldUseDark);
-    setIsReady(true);
-  }, []);
-
+export default function ThemeToggle({ className = "" }: { className?: string }) {
   const toggleTheme = () => {
-    const nextIsDark = !isDark;
-    document.documentElement.classList.toggle("dark", nextIsDark);
-    localStorage.setItem("theme", nextIsDark ? "dark" : "light");
-    setIsDark(nextIsDark);
-  };
+    const root = document.documentElement;
+    const next = root.classList.contains("dark") ? "light" : "dark";
 
-  if (!isReady) {
-    return (
-      <span
-        aria-hidden="true"
-        className="block w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 shadow-sm"
-      />
-    );
-  }
+    root.classList.toggle("dark", next === "dark");
+    root.dataset.theme = next;
+
+    try {
+      window.localStorage.setItem("theme", next);
+    } catch {
+      // Private browsing / storage disabled — the in-page toggle still works.
+    }
+  };
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={isDark ? "Enable light mode" : "Enable dark mode"}
-      aria-pressed={isDark}
-      title={isDark ? "Enable light mode" : "Enable dark mode"}
-      className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-400 dark:hover:border-blue-500 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      aria-label="Toggle colour theme"
+      title="Toggle colour theme"
+      className={`inline-flex h-10 w-10 items-center justify-center border border-line text-ink-muted transition-colors duration-300 ease-expo hover:border-ink hover:text-accent ${className}`}
     >
-      {isDark ? (
-        <RiSunLine className="w-5 h-5 text-amber-400" aria-hidden="true" />
-      ) : (
-        <RiMoonLine className="w-5 h-5 text-slate-700" aria-hidden="true" />
-      )}
+      {/* Shown in light mode. */}
+      <RiMoonLine className="h-[18px] w-[18px] dark:hidden" aria-hidden="true" />
+      {/* Shown in dark mode. */}
+      <RiSunLine className="hidden h-[18px] w-[18px] dark:block" aria-hidden="true" />
     </button>
   );
 }

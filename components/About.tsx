@@ -1,117 +1,125 @@
-import {
-  RiUser3Line,
-  RiGraduationCapLine,
-  RiComputerLine,
-  RiBriefcaseLine,
-} from "@remixicon/react";
 import { aboutData } from "@/data/portfolio";
+import Section, { SectionHeading } from "./ui/Section";
 import Reveal from "./Reveal";
 
-const cardClassName = "motion-card p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm";
-const iconClassName = "motion-icon w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center";
+const profileRows = [
+  { label: "Name", value: aboutData.profile.name },
+  { label: "Based in", value: aboutData.profile.location },
+  { label: "Studying", value: aboutData.profile.major },
+  { label: "Availability", value: aboutData.profile.status },
+];
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
-        <Reveal className="section-heading text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
-            {aboutData.title}
-          </h2>
-          <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400">
-            {aboutData.subtitle}
-          </p>
-        </Reveal>
+    <Section id="about">
+      <SectionHeading
+        index="04"
+        eyebrow="About"
+        title="A systems thinker who ships."
+        description="Information Systems taught me to look at the whole picture — process, data, and the people using it."
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Reveal className={cardClassName} delay={40}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={iconClassName}>
-                <RiUser3Line className="w-5 h-5" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                Brief Profile
-              </h3>
-            </div>
-
-            <dl className="space-y-4">
-              <div className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800/80">
-                <dt className="text-sm font-medium text-slate-500 dark:text-slate-400">Name</dt>
-                <dd className="text-sm font-semibold text-slate-900 dark:text-slate-200">{aboutData.profile.name}</dd>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800/80">
-                <dt className="text-sm font-medium text-slate-500 dark:text-slate-400">Status</dt>
-                <dd className="text-sm font-semibold text-slate-900 dark:text-slate-200">{aboutData.profile.status}</dd>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800/80">
-                <dt className="text-sm font-medium text-slate-500 dark:text-slate-400">Major</dt>
-                <dd className="text-sm font-semibold text-slate-900 dark:text-slate-200">{aboutData.profile.major}</dd>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <dt className="text-sm font-medium text-slate-500 dark:text-slate-400">Location</dt>
-                <dd className="text-sm font-semibold text-slate-900 dark:text-slate-200">{aboutData.profile.location}</dd>
-              </div>
-            </dl>
+      <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-12">
+        {/* --- Narrative ------------------------------------------------- */}
+        <div className="lg:col-span-7">
+          <Reveal>
+            <p className="font-display text-[1.5rem] font-medium leading-[1.25] tracking-[-0.02em] text-ink sm:text-[1.9rem]">
+              {aboutData.profile.tagline}
+            </p>
           </Reveal>
 
-          <Reveal className={cardClassName} delay={110}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={iconClassName}>
-                <RiGraduationCapLine className="w-5 h-5" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Education</h3>
-            </div>
-
-            <div className="space-y-6">
-              {aboutData.education.map((item, index) => (
-                <div key={index} className="relative pl-6 border-l-2 border-blue-500/30">
-                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-blue-600" />
-                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">{item.period}</span>
-                  <h4 className="text-base font-semibold text-slate-900 dark:text-white mt-1">{item.institution}</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-0.5">{item.major}</p>
-                </div>
-              ))}
+          <Reveal delay={80}>
+            <div className="mt-8 space-y-5 text-[0.98rem] leading-relaxed text-ink-muted">
+              <p>
+                My work usually starts where the spreadsheet ends. I sit with a
+                team, work out what the data actually needs to do, model it
+                properly, then build the application around it — backend,
+                database, and interface in that order.
+              </p>
+              <p>
+                I care about the parts people skip: clean schema design, sensible
+                error handling, accessible markup, and deployments that can be
+                repeated without drama. A project should still be easy to run a
+                year from now.
+              </p>
+              <p>
+                Outside coursework I take on freelance builds and hospitality
+                work — both taught me that deadlines and detail are the same
+                problem from different angles.
+              </p>
             </div>
           </Reveal>
 
-          <Reveal className={cardClassName} delay={180}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={iconClassName}>
-                <RiComputerLine className="w-5 h-5" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Areas of Focus</h3>
-            </div>
-
-            <div className="flex flex-wrap gap-2.5">
-              {aboutData.focusAreas.map((area, index) => (
-                <span key={index} className="px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700/60 hover:border-blue-400 transition-colors">
+          <Reveal delay={140}>
+            <div className="mt-10 flex flex-wrap gap-2.5">
+              {aboutData.focusAreas.map((area) => (
+                <span
+                  key={area}
+                  className="border border-line px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ink-muted"
+                >
                   {area}
                 </span>
               ))}
             </div>
           </Reveal>
+        </div>
 
-          <Reveal className={cardClassName} delay={250}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={iconClassName}>
-                <RiBriefcaseLine className="w-5 h-5" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Work Experience</h3>
+        {/* --- Facts column ---------------------------------------------- */}
+        <div className="lg:col-span-5">
+          <Reveal delay={60}>
+            <div className="border border-line bg-surface p-7 sm:p-8">
+              <p className="kicker mb-6">Details</p>
+              <dl className="divide-y divide-line">
+                {profileRows.map((row) => (
+                  <div
+                    key={row.label}
+                    className="flex items-baseline justify-between gap-6 py-4 first:pt-0 last:pb-0"
+                  >
+                    <dt className="kicker">{row.label}</dt>
+                    <dd className="text-right text-sm font-medium text-ink">
+                      {row.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </div>
+          </Reveal>
 
-            <div className="space-y-6">
-              {aboutData.workExperience.map((item, index) => (
-                <div key={index} className="relative pl-6 border-l-2 border-blue-500/30">
-                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-blue-600" />
-                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">{item.period}</span>
-                  <h4 className="text-base font-semibold text-slate-900 dark:text-white mt-1">{item.company}</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-0.5">{item.role}</p>
-                </div>
-              ))}
+          <Reveal delay={120}>
+            <div className="mt-6 border border-line p-7 sm:p-8">
+              <p className="kicker mb-6">Education</p>
+              <ul className="divide-y divide-line">
+                {aboutData.education.map((item) => (
+                  <li key={item.institution} className="py-4 first:pt-0 last:pb-0">
+                    <p className="kicker tabular">{item.period}</p>
+                    <p className="mt-1.5 font-display text-lg font-medium tracking-[-0.02em] text-ink">
+                      {item.institution}
+                    </p>
+                    <p className="mt-1 text-sm text-ink-muted">{item.major}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal delay={180}>
+            <div className="mt-6 border border-line p-7 sm:p-8">
+              <p className="kicker mb-6">Experience</p>
+              <ul className="divide-y divide-line">
+                {aboutData.workExperience.map((item) => (
+                  <li key={item.company} className="py-4 first:pt-0 last:pb-0">
+                    <p className="kicker tabular">{item.period}</p>
+                    <p className="mt-1.5 font-display text-lg font-medium tracking-[-0.02em] text-ink">
+                      {item.company}
+                    </p>
+                    <p className="mt-1 text-sm text-ink-muted">{item.role}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

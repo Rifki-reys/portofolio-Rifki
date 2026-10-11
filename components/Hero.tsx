@@ -1,152 +1,150 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import {
-  RiDownloadLine,
-  RiArrowRightUpLine,
-  RiGithubLine,
-  RiInstagramLine,
-  RiMailLine,
-  RiEmotionHappyLine,
-  RiArrowDownLine,
-} from "@remixicon/react";
-import { profileData } from "@/data/portfolio";
+import { RiArrowRightUpLine, RiArrowDownLine, RiGithubLine, RiInstagramLine, RiMailLine } from "@remixicon/react";
+import { profileData, aboutData } from "@/data/portfolio";
+import Container from "./ui/Container";
 import Reveal from "./Reveal";
 
+const socialLinks = [
+  { label: "GitHub", href: profileData.socialLinks.github, Icon: RiGithubLine },
+  { label: "Instagram", href: profileData.socialLinks.instagram, Icon: RiInstagramLine },
+  { label: "Email", href: profileData.socialLinks.email, Icon: RiMailLine },
+];
+
+/** Metadata rail: the facts, stated plainly. */
+const heroMeta = [
+  { label: "Location", value: aboutData.profile.location },
+  { label: "Discipline", value: aboutData.profile.major },
+  { label: "Status", value: aboutData.profile.status },
+];
+
 export default function Hero() {
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState(profileData.roles[0] ?? "");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    const currentRole = profileData.roles[currentRoleIndex] ?? "";
-
-    if (!isDeleting && displayText === currentRole) {
-      const pauseTimer = window.setTimeout(() => setIsDeleting(true), 1500);
-      return () => window.clearTimeout(pauseTimer);
-    }
-
-    const typingTimer = window.setTimeout(() => {
-      if (isDeleting) {
-        if (displayText.length === 0) {
-          setIsDeleting(false);
-          setCurrentRoleIndex((prev) => (prev + 1) % profileData.roles.length);
-          return;
-        }
-
-        setDisplayText(displayText.slice(0, -1));
-        return;
-      }
-
-      setDisplayText(currentRole.slice(0, displayText.length + 1));
-    }, isDeleting ? 40 : 80);
-
-    return () => window.clearTimeout(typingTimer);
-  }, [displayText, isDeleting, currentRoleIndex]);
-
   return (
-    <section
-      id="hero"
-      className="hero-shell relative min-h-screen flex items-center pt-24 pb-16 px-4 sm:px-6"
-    >
-      <div className="relative z-10 max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <Reveal className="lg:col-span-7 flex flex-col items-start" direction="left">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/80 dark:border-blue-900/60 mb-6">
-              <RiEmotionHappyLine className="w-4 h-4" aria-hidden="true" />
-              <span>{profileData.badge}</span>
-            </div>
+    <section id="hero" className="relative border-b border-line pt-nav-height">
+      <Container>
+        <div className="grid gap-12 pb-16 pt-14 lg:grid-cols-12 lg:gap-10 lg:pb-24 lg:pt-24">
+          {/* --- Statement ------------------------------------------------ */}
+          <div className="lg:col-span-8">
+            <Reveal>
+              <p className="kicker flex items-center gap-3">
+                <span className="inline-block h-1.5 w-1.5 animate-pulse bg-accent" aria-hidden="true" />
+                Available for work — 2026
+              </p>
+            </Reveal>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-              {profileData.name}
-            </h1>
+            <Reveal delay={60}>
+              <h1 className="mt-8 font-display text-[clamp(2.75rem,9vw,6.5rem)] font-semibold leading-[0.94] tracking-[-0.045em] text-ink">
+                I build web
+                <br />
+                products that
+                <br />
+                <span className="text-accent">actually ship.</span>
+              </h1>
+            </Reveal>
 
-            <div className="mt-3 text-xl sm:text-2xl font-semibold text-blue-600 dark:text-blue-400 min-h-[2rem] flex items-center">
-              <span>{displayText}</span>
-              <span className="typing-cursor" aria-hidden="true" />
-            </div>
+            <Reveal delay={140}>
+              <p className="mt-9 max-w-xl text-lg leading-relaxed text-ink-muted sm:text-xl">
+                {profileData.bio} Currently studying Information Systems at
+                IBIK, based in{" "}
+                <span className="text-ink">{aboutData.profile.location}</span>.
+              </p>
+            </Reveal>
 
-            <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-              {profileData.bio}
-            </p>
+            <Reveal delay={220}>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <a
+                  href="#work"
+                  className="group inline-flex items-center gap-2.5 border border-ink bg-ink px-7 py-4 font-mono text-xs font-medium uppercase tracking-[0.14em] text-canvas transition-colors duration-300 ease-expo hover:border-accent hover:bg-accent hover:text-white"
+                >
+                  See selected work
+                  <RiArrowRightUpLine
+                    className="h-4 w-4 transition-transform duration-300 ease-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
 
-            <div className="mt-8 flex flex-wrap gap-4 w-full sm:w-auto">
-              <a
-                href={profileData.cvUrl}
-                download={profileData.cvFilename}
-                className="motion-action inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-full sm:w-auto text-sm"
-              >
-                <RiDownloadLine className="w-4 h-4" aria-hidden="true" />
-                <span>Download CV</span>
-              </a>
-
-              <a
-                href="#projects"
-                className="motion-action inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:border-blue-500 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400 bg-white/50 dark:bg-slate-800/50 transition-colors w-full sm:w-auto text-sm"
-              >
-                <span>View Projects</span>
-                <RiArrowRightUpLine className="w-4 h-4" aria-hidden="true" />
-              </a>
-            </div>
-
-            <div className="mt-10 flex items-center gap-4">
-              <a
-                href={profileData.socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub Profile"
-                className="motion-action w-10 h-10 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white hover:border-blue-600 dark:hover:border-blue-500 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              >
-                <RiGithubLine className="w-5 h-5" aria-hidden="true" />
-              </a>
-              <a
-                href={profileData.socialLinks.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram Profile"
-                className="motion-action w-10 h-10 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white hover:border-blue-600 dark:hover:border-blue-500 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              >
-                <RiInstagramLine className="w-5 h-5" aria-hidden="true" />
-              </a>
-              <a
-                href={profileData.socialLinks.email}
-                aria-label="Send Email"
-                className="motion-action w-10 h-10 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white hover:border-blue-600 dark:hover:border-blue-500 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              >
-                <RiMailLine className="w-5 h-5" aria-hidden="true" />
-              </a>
-            </div>
+                <a
+                  href={profileData.cvUrl}
+                  download={profileData.cvFilename}
+                  className="inline-flex items-center gap-2.5 border border-line-strong px-7 py-4 font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors duration-300 ease-expo hover:border-ink hover:bg-surface"
+                >
+                  Download CV
+                </a>
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
 
-        <Reveal className="lg:col-span-5 flex justify-center lg:justify-end" direction="right" delay={120}>
-          <div className="hero-visual relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden bg-gradient-to-tr from-blue-600/20 via-blue-500/10 to-transparent p-2 border border-slate-200 dark:border-slate-800 shadow-xl">
-            <div className="hero-visual-frame w-full h-full rounded-2xl overflow-hidden relative bg-white dark:bg-slate-900">
-              <Image
-                src={profileData.avatarUrl}
-                alt={profileData.name}
-                fill
-                priority
-                sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
-                className="object-cover object-top"
+          {/* --- Portrait + meta ------------------------------------------- */}
+          <div className="lg:col-span-4 lg:border-l lg:border-line lg:pl-10">
+            <Reveal delay={120}>
+              <figure className="relative">
+                <div className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-surface-muted">
+                  <Image
+                    src={profileData.avatarUrl}
+                    alt={`Portrait of ${profileData.name}`}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 34vw"
+                    className="object-cover object-top grayscale transition-all duration-700 ease-expo hover:grayscale-0"
+                  />
+                </div>
+
+                <figcaption className="mt-4 flex items-center justify-between border-b border-line pb-3">
+                  <span className="kicker">{aboutData.profile.name}</span>
+                  <span className="kicker tabular">Bogor, ID</span>
+                </figcaption>
+              </figure>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <dl className="mt-8 divide-y divide-line">
+                {heroMeta.map((item) => (
+                  <div key={item.label} className="flex items-baseline justify-between gap-6 py-3.5">
+                    <dt className="kicker">{item.label}</dt>
+                    <dd className="text-right text-sm font-medium text-ink">
+                      {item.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+
+            <Reveal delay={260}>
+              <ul className="mt-8 flex flex-wrap gap-2.5">
+                {socialLinks.map(({ label, href, Icon }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      {...(label === "Email"
+                        ? {}
+                        : { target: "_blank", rel: "noopener noreferrer" })}
+                      className="inline-flex items-center gap-2 border border-line px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-muted transition-colors duration-300 ease-expo hover:border-accent hover:text-accent"
+                    >
+                      <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+        </div>
+
+        <Reveal delay={320}>
+          <div className="flex items-center justify-between border-t border-line py-5">
+            <a
+              href="#services"
+              className="kicker group inline-flex items-center gap-2.5 transition-colors duration-300 ease-expo hover:text-accent"
+            >
+              <RiArrowDownLine
+                className="h-3.5 w-3.5 transition-transform duration-300 ease-expo group-hover:translate-y-0.5"
+                aria-hidden="true"
               />
-            </div>
+              What I do
+            </a>
+            <span className="kicker tabular">Scroll to explore</span>
           </div>
         </Reveal>
-      </div>
-
-      <a
-        href="#about"
-        aria-label="Scroll to About section"
-        className="scroll-cue absolute bottom-8 left-1/2 z-10 -translate-x-1/2 rounded-full p-2 text-blue-600 dark:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-      >
-        <RiArrowDownLine className="h-6 w-6" aria-hidden="true" />
-      </a>
+      </Container>
     </section>
   );
 }
