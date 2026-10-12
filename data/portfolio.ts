@@ -276,7 +276,7 @@ export const projectsData: ProjectItem[] = [
     year: "2024",
     description:
       "A focused front-end tool that surfaces the accounts you follow who never followed back — shipped as a static GitHub Page.",
-    image: "/projects/1789543759_e78cf978a130899fb6b1.png",
+    image: "/projects/ig-unfollower-checker-preview.png",
     stack: ["JavaScript", "CSS"],
     githubUrl: "https://github.com/Rifki-reys/ig-unfollower-checker",
     demoUrl: "https://rifki-reys.github.io/ig-unfollower-checker",
